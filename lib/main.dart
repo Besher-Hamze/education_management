@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       textDirection: TextDirection.rtl,
       getPages: AppRoutes.namedRoutes,
       initialRoute: RouteWrapper.getInitialRoute,
-      defaultTransition: Transition.downToUp,
+      defaultTransition: Transition.fadeIn,
     );
   }
 }
