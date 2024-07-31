@@ -1,3 +1,4 @@
+import 'package:education_managment/utils/cache_helper.dart';
 import 'package:education_managment/view/auth/login_page.dart';
 import 'package:education_managment/view/auth/main_auth.dart';
 import 'package:education_managment/view/auth/signup_page.dart';
@@ -16,7 +17,7 @@ class AppRoutes {
     ),
     GetPage(
       name: RoutesPath.login,
-      page: () => const LoginPage(),
+      page: () => LoginPage(),
     ),
     GetPage(
       name: RoutesPath.signup,
@@ -34,6 +35,10 @@ class RoutesPath {
 
 class RouteWrapper {
   static get getInitialRoute {
-    return RoutesPath.auth;
+    if(CacheHelper.getData(key: "student")==null) {
+      return RoutesPath.auth;
+    }else{
+      return RoutesPath.home;
+    }
   }
 }

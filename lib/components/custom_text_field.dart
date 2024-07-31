@@ -8,7 +8,10 @@ class CustomTextFormField extends StatelessWidget {
       required this.label,
       required this.hint,
       required this.iconData,
-      required this.validator, required this.controller, this.textInputType, this.isPassword});
+      required this.validator,
+      required this.controller,
+      this.textInputType,
+      this.isPassword});
 
   final String label;
   final String hint;
@@ -17,15 +20,15 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType? textInputType;
   final bool? isPassword;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextFormField(
         obscureText: isPassword ?? false,
-
         controller: controller,
-        keyboardType:textInputType ,
+        keyboardType: textInputType,
         decoration: InputDecoration(
             labelText: label,
             hintText: hint,
@@ -33,7 +36,13 @@ class CustomTextFormField extends StatelessWidget {
               iconData,
               color: AppColors.primaryColor,
             )),
-        validator: validator,
+        validator: (value) {
+          if(value!.isEmpty){
+            validator;
+          }else{
+            return null;
+          }
+        },
       ),
     );
   }
